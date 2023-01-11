@@ -1,8 +1,11 @@
 const { response } = require('express')
 const express = require('express')
+const morgan = require('morgan')
+
 const app = express()
 
 app.use(express.json())
+
 
 let persons = [
     {
@@ -66,7 +69,7 @@ const generateId = () => {
     return newId
 }
 //addPerson
-app.post('/api/persons', (require, response) => {
+app.post('/api/persons', (require, response, next) => {
     const body = require.body
     console.log('body', body)
     if(!body.name) {
@@ -93,8 +96,13 @@ app.post('/api/persons', (require, response) => {
 
     persons = persons.concat(person)
     response.json(person)
-    console.log('persons', persons)
+    next()
 })
+
+morgan.token('person', require => {
+    return JSON.stringify(require.body)
+})
+app.use(morgan(':method :url :status :res[content-length] :total-time[3] :person'))
 
 const PORT = 3001
 app.listen(PORT, () => {
