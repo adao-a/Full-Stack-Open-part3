@@ -1,0 +1,20 @@
+//getAllperson
+GET http://localhost:3001/api/persons
+
+### //getPErsonInfo
+GET http://localhost:3001/info
+
+### //getPerson  id=1
+GET http://localhost:3001/apt/person/1
+
+### //deletePerson id=1
+DELETE http://localhost:3001/apt/person/2
+
+### //addPerson
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name": "mmz",
+    "number": 1234657698
+}
