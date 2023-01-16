@@ -1,11 +1,11 @@
 const { response } = require('express')
 const express = require('express')
 const morgan = require('morgan')
-
+const cors = require('cors')
 const app = express()
-
+app.use(cors())
 app.use(express.json())
-
+app.use(express.static('build'))
 
 let persons = [
     {
@@ -45,7 +45,7 @@ app.get('/info', (require, response) => {
 })
 
 //getPerson
-app.get('/apt/person/:id', (require, response) => {
+app.get('/api/person/:id', (require, response) => {
     const id = Number(require.params.id)
     const person = persons.find(p => p.id === id)
     if(person) {
@@ -56,7 +56,7 @@ app.get('/apt/person/:id', (require, response) => {
 })
 
 //deletePerson
-app.delete('/apt/person/:id', (require, response) => {
+app.delete('/apiperson/:id', (require, response) => {
     const id = Number(require.params.id)
     persons = persons.filter(p => p.id !== id)
     response.status(204).end()
