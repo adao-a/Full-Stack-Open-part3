@@ -5,16 +5,24 @@ GET http://localhost:3001/api/persons
 GET http://localhost:3001/info
 
 ### //getPerson  id=1
-GET http://localhost:3001/api/person/1
+GET http://localhost:3001/api/persons/63c51594ae47d8c93a6d4f1b
 
 ### //deletePerson id=1
-DELETE http://localhost:3001/api/person/2
+DELETE http://localhost:3001/api/persons/63c54703a208556ac2bb1a6d
 
 ### //addPerson
 POST http://localhost:3001/api/persons
 Content-Type: application/json
 
 {
-    "name": "mmz",
-    "number": 1234657698
+    "name": "mzm",
+    "number": 123465769999
+}
+
+### //updatePerson
+PUT http://localhost:3001/api/persons/63c545b0bc264adef03e8347
+Content-Type: application/json
+
+{   "name": "mz",
+    "number": 123465769999
 }
